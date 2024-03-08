@@ -1,36 +1,46 @@
 package com.reservationapp.controller;
 
+import com.reservationapp.entity.Route;
 import com.reservationapp.payload.BusDto;
+import com.reservationapp.repository.BusRepository;
+import com.reservationapp.repository.RouteRepository;
 import com.reservationapp.service.BusService;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/bus")
 public class BusController {
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private BusService busService;
+    @Autowired
+    private RouteRepository routeRepository;
+    @Autowired
+    private BusRepository busRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<BusDto> addBus(@RequestBody BusDto busDto) throws ParseException {
-
-        SimpleDateFormat format=new SimpleDateFormat("dd-MM-yyyy");
-        Date fromDate=format.parse(busDto.getFromDate());
-        Date toDate=format.parse(busDto.getToDate());
-
-        BusDto dto=busService.addBuss(busDto);
-        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    public ResponseEntity<String> addBus(@RequestBody BusDto busDto) throws ParseException {
+        busService.addBus(busDto);
+        return new ResponseEntity<>("Bus Details Added", HttpStatus.CREATED);
     }
 
+//    public List<Route> searchBuses(
+//            @RequestParam("fromLocation") String fromLocation,
+//            @RequestParam("toLocation") String toLocation ,
+//            @RequestParam("fromDate") String fromDate
+//    ){
+//       return routeRepository.findByFromLocationAndToLocationAndFromDate(fromLocation,toLocation,fromDate)
+//    }
 
 }
