@@ -1,5 +1,6 @@
 package com.reservationapp.controller;
 
+import com.reservationapp.entity.Bus;
 import com.reservationapp.entity.Route;
 import com.reservationapp.payload.BusDto;
 import com.reservationapp.repository.BusRepository;
@@ -30,17 +31,9 @@ public class BusController {
     private BusRepository busRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addBus(@RequestBody BusDto busDto) throws ParseException {
-        busService.addBus(busDto);
-        return new ResponseEntity<>("Bus Details Added", HttpStatus.CREATED);
+    public ResponseEntity<Bus> addBus(@RequestBody BusDto busDto) throws ParseException {
+        Bus bus = busService.addBus(busDto);
+        return new ResponseEntity<>(bus, HttpStatus.CREATED);
     }
-
-//    public List<Route> searchBuses(
-//            @RequestParam("fromLocation") String fromLocation,
-//            @RequestParam("toLocation") String toLocation ,
-//            @RequestParam("fromDate") String fromDate
-//    ){
-//       return routeRepository.findByFromLocationAndToLocationAndFromDate(fromLocation,toLocation,fromDate)
-//    }
 
 }

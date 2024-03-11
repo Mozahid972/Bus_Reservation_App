@@ -12,7 +12,7 @@ public class BusDto {
     private double price;
     private int totalSeats;
     private int availableSeats;
-    private RouteDto route;
-    private List<SubRouteDto> subRoutes;
+//    private RouteDto route;
+//    private List<SubRouteDto> subRoutes;
 
 }

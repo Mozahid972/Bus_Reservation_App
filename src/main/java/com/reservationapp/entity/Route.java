@@ -19,11 +19,13 @@ public class Route {
     private String totalDuration;
     private String fromTime;
     private String toTime;
+    @Column(name = "bus_id",unique = true,nullable = false)
+    private long busId;
     // Getters and setters
-    @OneToOne
-    @JoinColumn(name="bus_id")
-    private Bus bus;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="bus_id",referencedColumnName = "id")
+//    private Bus bus;
 
-    @OneToMany(mappedBy = "route")
-    private List<SubRoute> subRoutes;
+//    @OneToMany(mappedBy = "route",fetch = FetchType.LAZY)
+//    private List<SubRoute> subRoutes;
 }

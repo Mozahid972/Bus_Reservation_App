@@ -19,8 +19,11 @@ public class SubRoute {
     private String totalDuration;
     private String fromTime;
     private String toTime;
+    @Column(name = "route_id",nullable = false)
+    private long routeId;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="route_id")
+//    private Route route;
 
-    @ManyToOne
-    @JoinColumn(name="route_id")
-    private Route route;
 }
