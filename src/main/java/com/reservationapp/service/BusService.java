@@ -8,7 +8,7 @@ import com.reservationapp.payload.SubRouteDto;
 import com.reservationapp.repository.BusRepository;
 import com.reservationapp.repository.RouteRepository;
 import com.reservationapp.repository.SubRouteRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
